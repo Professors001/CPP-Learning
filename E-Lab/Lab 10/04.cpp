@@ -10,6 +10,7 @@ typedef struct _point {
 } point;
 
 class Circle {
+    //from 03.cpp
     private:
         point center;
         double radius;
@@ -38,14 +39,24 @@ class Circle {
 
 int main()
 {
-    point a1 , a2;
-    a1.xPosition = 0;
-    a1.yPosition = 0;
-    Circle c1(a1, 5);
+    point center , check; // declear variable
+    double radius; // declear variable
 
-    a2.xPosition = 4;
-    a2.yPosition = 4;
+    cout << "Center of Circle: "; cin >> center.xPosition >> center.yPosition; // print & assign x,y value to struct center
+    cout << "Radius of Circle: "; cin >> radius; // print & assign radius value
 
-    cout << c1.contains(a2) << endl;
+    Circle circle(center, radius); // create object circle by using struct center and radius variable
 
+    cout << "Point to Check: "; cin >> check.xPosition >> check.yPosition; // print & assign x,y value to struct check
+
+    cout << "Area of Circle is " << circle.area() << endl; // print area value
+
+    cout << "Distance from Center to Point (" << check.xPosition << ", " << check.yPosition 
+            << ") is " << circle.distanceFromCenter(check) << endl;
+            // print distance value of center to check
+
+   if(circle.contains(check)) // in contains function it gonna return 0 or 1 only then can use like this to
+                              // make this if-else statement more look easy(as i think) 
+        cout << "This circle contains this point." << endl; // if return 1
+    else cout << "This point is not in this circle." << endl; // if return 0
 }

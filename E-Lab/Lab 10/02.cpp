@@ -4,6 +4,7 @@
 using namespace std;
 
 class Hero {
+    //this class from 01.cpp
     private:
         string name;
         int level;
@@ -19,8 +20,8 @@ class Hero {
 
 int main()
 {
-    string name; int level;
-    cin >> name >> level;
-    Hero hero(name, level);
-    cout << hero.getName() << " " << hero.getLevel() << endl;
+    string name; int level; // declear variable to get value from cin
+    cin >> name >> level; // assign name and value to variable that create before
+    Hero hero(name, level); // create a object by use value from variable
+    cout << hero.getName() << " " << hero.getLevel() << endl; // just print it out!
 }

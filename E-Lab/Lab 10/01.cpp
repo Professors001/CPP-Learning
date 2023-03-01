@@ -4,22 +4,23 @@ using namespace std;
 
 class Hero {
     private:
-        string name;
-        int level;
+        string name; // declear name string data type
+        int level; // declear level int data type
     public:
         Hero(string name, int level) {
-            this->name = name;
-            this->level = level;
+            this->name = name; //assign name to this class
+            this->level = level; //assign level to this class
         }
         
-        string getName() {return this->name;}
-        int getLevel() {return this->level;}
+        string getName() {return this->name;} //getter function from this class
+        int getLevel() {return this->level;} //getter function from this class
 };
 
 
 int main()
-{
-   Hero h1("Zhukov", 5);
+{   
+    //test main
+    Hero h1("Zhukov", 5);
 
-   cout << h1.getName() << h1.getLevel() << endl;
+    cout << h1.getName() << h1.getLevel() << endl;
 }
