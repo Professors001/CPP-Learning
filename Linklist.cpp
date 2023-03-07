@@ -17,6 +17,10 @@ class Node {
             next = nextPtr;
         }
 
+        void changeValue(int n) {
+            value = n;
+        }
+
         int getValue() { return value; }
 
         Node* getPtr() { return next; }
@@ -39,6 +43,16 @@ class LinkList {
                 temp->chagePtr(head);
             }
             head = temp;
+        }
+
+        void editValue(int target, int n) {
+            Node *current = head;
+            while(current) {
+                if(current->getValue() == target) {
+                    current->changeValue(n);
+                }
+                    current = current->getPtr();
+            }
         }
 
         void deleteNode(int target) {
@@ -83,6 +97,8 @@ int main() {
     list1.deleteNode(0);
     list1.deleteNode(90);
 
+    list1.editValue(20, 5);
+    
     list1.printNode();
 
     return 0;
