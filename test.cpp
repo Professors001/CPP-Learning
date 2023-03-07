@@ -1,58 +1,89 @@
 #include <iostream>
-#include <iomanip>
-#include <cmath>
-
 using namespace std;
 
-typedef struct _point {
-    double xPosition;
-    double yPosition;
-} point; 
+// class Book {
+//     private:
+//         string name;
+//         string author;
+//         int quantity;
+//     public:
+//         Book(string n, string a) {
+//             name = n;
+//             author = a;
+//             quantity = 10;
+//         }
+//         void Buy(int n) {
+//             quantity -= n;
+//         }
+//         void Buy(int num, int i) {
+//             quantity += num;
+//         }
+//         int GetQ() const { return quantity; }
+// };
 
-class Circle {
-    private:
-        point center;
-        double radius;
-    public:
-        Circle(point input, double radius) {
-            this->center.xPosition = input.xPosition; //assign x_value to this class from struct
-            this->center.yPosition = input.yPosition; //assign y_value to this class from struct
-            this->radius = radius; //assign radius_value to this class from struct
-        }
+// int main() {
+//     Book c_book("C++", "Henry");
 
-        double area() {
-            return M_PI * radius * radius; // return area_value (M_PI) = Pi Value 3.14... * radius^2
-        }
+//     c_book.Buy(5, 2);
+// }
 
-        double taxiArea() {
-            return (double) 2.0 * (radius * radius); // return area_value (M_PI) = Pi Value 3.14... * radius^2
-        }
+// class Car {
+//     private:
+//         string license;
+//         int power;
+//     public:
+//         Car(string l) {
+//             license = l;
+//             power = 100;
+//         }
+//         void Drive(int n) {
+//             power -= n;
+//         }
+//         int GetPower() const {
+//             return power;
+//         }
+// };
 
-        double distanceFromCenter(point pt) {
-            // distance formula in circle can write not like me just make more variable
-            return sqrt(pow((pt.xPosition - this->center.xPosition), 2) + pow((pt.yPosition - this->center.yPosition), 2));
-        }
+// int main() {
+//     Car *car1 = new Car("1");
+//     Car car2("2");
+//     Car *car3 = car1;
+//     Car &car4 = car2;
+//     car2.Drive(10);
+//     car3->Drive(5);
+//     car4.Drive(10);
+//     car3->Drive(50);
 
-        int contains(point pt) {
-            // use distanceFromCenter(pt) to calculate that a pt node is in range of this circle radius
-            double distance = distanceFromCenter(pt);
-            if (distance <= radius) {
-                return 1;
-            } else { return 0; }
-        }
-};
+//     cout << car1->GetPower() << endl << car2.GetPower() << endl <<
+//     car3->GetPower() << endl << car4.GetPower() << endl;
+// }
 
-int main() { 
-    double radius;
-    point zero;
+// // type 1
+// class Garage {
+//     private:
+//         Car car1;
+//         Car car2;
 
-    zero.xPosition = 0;
-    zero.yPosition = 0;
+//     //..code..
+// };
 
-    cin >> radius;
+// class Car {
 
-    Circle circle(zero, radius);
+// };
 
-    cout << fixed << setprecision(6) << circle.area() << endl << circle.taxiArea() << endl;
-    return 0;
-}
+// //type 2
+// class Garage {
+//     private:
+//         class Car {
+//             //..code..
+//         };
+// };
+
+// // type 3
+
+// class Garage {
+//     //..code..
+// };
+// class Car : public Garage {
+//     //..code..
+// };
