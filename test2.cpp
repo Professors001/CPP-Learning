@@ -1,26 +1,3 @@
-#include <iostream>
-using namespace std;
-
-class Animal
-{
-private:
-    int happiness;
-    int energy;
-    int fullness;
-    const int MAX_HAPPINESS = 100;
-    const int MAX_ENERGY = 100;
-    const int MAX_FULLNESS = 100;
-    void limitStat();
-public:
-    Animal(int, int, int);
-    int getHappiness();
-    int getEnergy();
-    int getFullness();
-    void eat(int);
-    void play(int);
-    void sleep(int);
-};
-
 Animal :: Animal(int hap, int engy, int full) {
     happiness = hap; energy = engy; fullness = full;
     limitStat();
@@ -56,9 +33,4 @@ void Animal :: sleep(int time) {
     energy += (10 * time);
     fullness -= (10 * time);
     limitStat();
-}
-
-
-int main()
-{
 }
