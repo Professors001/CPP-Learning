@@ -17,16 +17,14 @@ class MusicPlaylist {
         string play() {
             return Songs[current];
         }
-};  
+};
 
-int main() {
-    
+int main()
+{
     MusicPlaylist mp;
     mp.add("Shape of You");
     mp.add("That's What I Like");
     mp.add("Humble");
     mp.setCurrentTrack(1);
     cout << mp.play() << endl; // แสดงเพลงลำดับที่ 1 คือ Shape of You
-
-    return 0;
 }
