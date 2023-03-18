@@ -31,7 +31,7 @@ string Image::info() {
     size = getSizeInKB();
     sizeUnit = "KB";
   }
-  ss << getTitle() << " (" << size << sizeUnit << ")";
+  ss << Media::info();
   ss << "IMAGE Shape: " << width << "x" << height;
   return ss.str();
 }

@@ -1,9 +1,6 @@
 #ifndef MEDIA_H
 #define MEDIA_H
 
-// https://kasets.art/UCfFTL
-
-
 #include <iostream>
 using namespace std;
 
@@ -19,6 +16,11 @@ class Media {
     double getSizeInKB();
     double getSizeInMB();
     double getSizeInGB();
+		// เพิ่ม virtual function และ pure virtual function
+    //การมีVirtual จะทำให้การเขียนFunctionในClassลูก มีผลกับ Class แม่หากใน
+    //Class ลูกมีการเลี่ยนแปลงในตัวของ Function ที่มี virtual กำกับไว้ๆ
+    virtual string info(); 
+    virtual string toScreen() = 0;
 };
 
 #endif
