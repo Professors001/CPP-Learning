@@ -1,83 +1,39 @@
 #include <iostream>
+#include <sstream>
 using namespace std;
 
-class Transportation
-{
+class Person {
+	protected:
+		string name;
+		double money;
 	public:
-		virtual double fare() = 0;
-};
-
-class Taxi : public Transportation
-{
-	private:
-		double distance;
-	public:
-		Taxi() {distance = 0;}
-		void setDistance(double d) { 
-			distance = d; 
+		Person(string text) {name = text; money = 0;}
+		void addMoney(double n) {
+			money += n;
 		}
-		virtual double fare() {
-			double fare = 35;
-			if(distance > 0) { 
-				fare += (distance * 2); 
-			} 
-		return fare; }
+		double getMoney() {return money;}
+		virtual string getName() {return name;}
 };
 
-class BmtaBus : public Transportation
+class Racer : public Person
 {
+	protected:
+		string team;
+		int number, win;
 	public:
-		virtual double fare() {return 6.5;}
+		Racer(string name, string teamName, int n, int w) : Person(name)
+		{
+			team = teamName; number = n, w = win;
+		}
+		virtual string getName() {
+			stringstream output;
+			output << name << " " << team << " " << number;
+			return output.str();
+		}
 };
 
-class BTS : public Transportation
-{
-	private:
-		int stations;
-	public:
-		void setStation(int n) {stations = n;}
-		virtual double fare() {return 15 + (stations * 5);}
-};
+int main() {
+	Racer maxv("Max", "Red Bull", 1, 44);
+	cout << maxv.getName() << endl;
 
-class Passenger
-{
-	private:
-		double fare;
-	public:
-		Passenger() {fare = 0;}
-		void addTransportation(Transportation &newT) {
-			this->fare += newT.fare();
-		} 
-		double getTotalFare() {return fare;}
-};
-
-int main()
-{
-    Passenger passenger;
-    while(1) {
-        char transportType;
-        cin >> transportType;
-        if (transportType == 'A') {
-            Taxi *taxi = new Taxi();
-            double distance;
-            cin >> distance;
-			taxi->setDistance(distance);
-			passenger.addTransportation(*taxi);
-			delete(taxi);
-        } else if (transportType == 'B') {
-            BmtaBus *bus = new BmtaBus();
-            passenger.addTransportation(*bus);
-            delete(bus);
-        } else if (transportType == 'C') {
-            BTS *bts = new BTS();
-            int station;
-            cin >> station;
-            bts->setStation(station);
-			passenger.addTransportation(*bts);
-            delete(bts);
-        } else {
-            break;
-        }
-    }
-    cout << "Total Fare: " << passenger.getTotalFare() << endl;
 }
