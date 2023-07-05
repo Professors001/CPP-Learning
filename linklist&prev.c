@@ -39,6 +39,23 @@ void printNode(Node* head, int key) {
     }
 }
 
+void deleteNode(Node* *head, int target) {
+    Node* runner = *head; Node* prev = NULL;
+    if(*head == NULL) {return;}
+    else if (runner->value == target) {*head = runner->next; free(runner);}
+    else {
+        while(runner != NULL) {
+            if(runner->next != NULL && runner->next->value < target) {
+                prev = runner;
+                runner = runner->next;
+            }
+            else if(runner->value = target) {
+                prev->next = runner->newNode;
+            }
+        }
+    }
+}
+
 Node* getLast(Node* head) {
     while(head->next != NULL) {
         head = head->next;
@@ -51,6 +68,6 @@ int main() {
     head = NULL;
     for(int i = 0; i < 20; i++) {newNode(&head, i);}
     printNode(head, 1);
-    puts("-----------------------------");
-    printNode(getLast(head), 0);
-}
+//     puts("-----------------------------");
+//     printNode(getLast(head), 0);
+// }
