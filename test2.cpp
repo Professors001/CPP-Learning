@@ -1,31 +1,40 @@
 #include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
-
 using namespace std;
 
-
-int main()
-{
-    int count = 0;
-    string ans = "Frustration";
-    for (int i = 0; i < 3; i++) {
-        int d;
-        int n;
-        int t;
-        cin >> d >> n >> t; cin.ignore();
-        if((d*n) >= t*100) {
-            count += 1;
+int max(int *lists, int n, int start) {
+    int max = 0;
+    for (int i = start; i < n; i++) {
+        if(max < lists[i]) {
+            max = lists[i];
         }
     }
+    return max;
+}
 
-    if(count == 3) {
-        ans = "Big game";
-    } else if (count == 2) {
-        ans = "Little game";
+
+int main () {
+    int num_pole, count = 0;
+    cin >> num_pole;
+    int poles[num_pole];
+    for (int i = 0; i < num_pole; i++) {
+        cin >> poles[i];
     }
-    
-
-    cout << ans << endl;
+    for (int i = 0; i < num_pole; i++) {
+        int max_height = poles[i];
+        for (int j = i + 1; j < num_pole; j++) {
+            int max_cur = max(poles, j, i+1);
+            // cout << max_cur << "-" << poles[j] << endl;
+            if(poles[j] <= max_cur && j > i+1) {
+                // cout << "PASS" << endl;
+                break;
+            }
+            count++;
+            // cout << poles[i] << " " << poles[j] << endl;
+            if(poles[j] >= max_height) {
+                break;
+            }
+        }
+        // cout << "------" << endl;
+    }
+    cout << count;
 }

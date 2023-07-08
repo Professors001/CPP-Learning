@@ -1,24 +1,41 @@
 #include <stdio.h>
 
 int main() {
-    int num_pole, count = 1;
-    scanf("%d", &num_pole);
-    int poles[num_pole];
-    for (int i = 0; i < num_pole; i++) {
-        scanf("%d", &poles[i]);
+    int N ;
+    scanf("%d" , &N) ;
+    int saofai[N] ;
+    int saifai = 0;
+    int checker = 1;
+    for (int i = 0; i < N; i++)
+    {   
+        scanf("%d" , &saofai[i]) ;
     }
+    
+    // height check
 
-    for (int i = 0; i < num_pole - 1; i++) {
-        int max_height = poles[i];
-        for (int j = i + 2; j < num_pole; j++) {
-            if (poles[j] > max_height) {
-                count++;
-                max_height = poles[j];
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = i+1 ; j < N; j++)
+        {
+            for (int k = i+1; k < j; k++)
+            {
+                if (saofai[k] >= saofai[i] || saofai[k]>= saofai[j] )
+                {
+                    checker = 0 ;
+                    break ;
+                }
+                
             }
+
+            if (checker)
+            {
+                saifai += 1 ;
+                
+            }
+            checker = 1 ;
         }
+    
     }
-
-    printf("%d", count);
-
-    return 0;
+    printf("%d" , saifai) ;
+    
 }

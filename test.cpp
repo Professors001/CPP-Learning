@@ -1,25 +1,32 @@
 #include <iostream>
 using namespace std;
 
-int main () {
-    int num_pole, count = 1;
-    scanf("%d", &num_pole);
+int main() {
+    int num_pole;
+    cin >> num_pole;
     int poles[num_pole];
+    int count = 0;
+    int check = 1;
     for (int i = 0; i < num_pole; i++) {
-        scanf("%d", &poles[i]);
+        cin >> poles[i];
     }
-
-    for (int i = 0; i < num_pole - 1; i++) {
-        int max_height = poles[i];
-        for (int j = i + 2; j < num_pole; j++) {
-            if (poles[j] > max_height) {
-                count++;
-                max_height = poles[j];
+    
+    // height check
+    for (int i = 0; i < num_pole; i++) {
+        for (int j = i+1; j < num_pole; j++) {
+            for (int k = i+1; k < j; k++) {
+                if (poles[k] >= poles[i] || poles[k] >= poles[j]) {
+                    check = 0;
+                    break;
+                }
             }
+            if (check) {
+                count += 1;
+            }
+            check = 1;
         }
     }
-
-    printf("%d", count);
-
+    cout << count << endl;
+    
     return 0;
 }
