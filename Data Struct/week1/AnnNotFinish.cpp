@@ -2,37 +2,44 @@
 #include <vector>
 using namespace std;
 
-int AnnOrchard(int **mattrix, int size, int option) {
-    int max = 0, sum = 0;
-    for(int m = 0; m <= size; m++) {
-        sum = 0;
-        for(int i = 0; i < m; i++) {
-            for(int j = 0; j < m; j++) {
-                sum += mattrix[i][j];
+int AnnOrchard(const vector<vector<int>>& matrix) {
+    int rows = matrix.size();
+    int cols = matrix[0].size();
+    int maxSum = 0;
+    vector<int> temp(cols);
+    for (int left = 0; left < cols; ++left) {
+        temp.assign(cols, 0);
+
+        for(int right = left; right < cols; right++) {
+            for(int i = 0; i < rows; ++i) {
+                temp[i] += matrix[i][right];
             }
+
+            int curSum = 0;
+            int curMax = 0;
+
+            for(int i = 0; i < rows; i++) {
+                curMax = max(temp[i], curMax + temp[i]);
+                curSum = max(curSum, curMax);
+            }
+            maxSum = max(maxSum, curSum);
         }
-        if(sum > max) {
-        max = sum;
-        }
-    }
-    return max;
+    } return maxSum;
 }
 
 int main() {
     int size;
     cin >> size;
+    vector<vector<int>> matrix(size, vector<int>(size));
 
-    int **matrix = new int *[size];
-
-    for(int i = 0; i < size; i++) {
-        matrix[i] = new int[size];
-        for(int j = 0; j < size; j++) {
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
             cin >> matrix[i][j];
         }
     }
-    cout << "------------" << endl;
 
-    cout << AnnOrchard(matrix, size, 1) << endl;
+    int maxSum = AnnOrchard(matrix);
+    cout << maxSum << endl;
 
     return 0;
 }
